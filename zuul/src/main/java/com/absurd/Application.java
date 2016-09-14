@@ -1,18 +1,19 @@
 package com.absurd;
 
+import com.absurd.filter.AccessFilter;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
-import org.springframework.cloud.config.server.EnableConfigServer;
+import org.springframework.cloud.client.SpringCloudApplication;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.context.annotation.Bean;
 
 /**
  * Created by Administrator on 2016/9/14.
  */
-@EnableConfigServer
-@SpringBootApplication
-public class Application extends SpringBootServletInitializer {
-
+@EnableZuulProxy
+@SpringCloudApplication
+public class Application  extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(Application.class);
@@ -21,5 +22,8 @@ public class Application extends SpringBootServletInitializer {
     public static void main(String[] args) throws Exception {
         SpringApplication.run(Application.class, args);
     }
-
+    @Bean
+    public AccessFilter accessFilter() {
+        return new AccessFilter();
+    }
 }
