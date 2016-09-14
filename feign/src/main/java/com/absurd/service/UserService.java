@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * Created by Administrator on 2016/5/19.
  */
-@FeignClient("user-service")
+@FeignClient(value ="user-service", fallback = UserServiceHystrix.class)
 public interface UserService {
 
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)

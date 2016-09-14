@@ -1,5 +1,6 @@
 package com.absurd.controller;
 
+import com.absurd.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +13,12 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    @Autowired
-    RestTemplate restTemplate;
+@Autowired
+private UserService userService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public String getUser(@PathVariable("id") Long id){
-        return restTemplate.getForEntity("http://user-service/user/"+id, String.class).getBody();
+       return  userService.getUser(id);
     }
 }
