@@ -19,6 +19,23 @@ public class UserController {
     @Value("${userid}")
     private Long userid;
 
+    @Value("${username}")
+    private String username;
+
+    @Value("${password}")
+    private String password;
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @ResponseBody
+    public String login(){
+        return   userService.getUser(userid);
+    }
+
+    @RequestMapping(value = "/dev", method = RequestMethod.GET)
+    @ResponseBody
+    public String getUser(){
+        return   userService.login(username,password);
+    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
@@ -26,10 +43,6 @@ public class UserController {
       return   userService.getUser(id);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    @ResponseBody
-    public String getUser(){
-        return   userService.getUser(userid);
-    }
+
 
 }

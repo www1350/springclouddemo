@@ -4,6 +4,7 @@ import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Created by Administrator on 2016/5/19.
@@ -13,5 +14,8 @@ public interface UserService {
 
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     String getUser(@PathVariable(value = "id") Long id);
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    String login(String username, String password);
 
 }
