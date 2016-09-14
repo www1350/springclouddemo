@@ -9,12 +9,12 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>eurekaserver</module>
         <module>springbootdemo</module>
         <module>ribbon</module>
         <module>feign</module>
         <module>configserver</module>
         <module>zuul</module>
+        <module>eurekaserver</module>
     </modules>
 
 
