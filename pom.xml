@@ -13,6 +13,7 @@
         <module>springbootdemo</module>
         <module>ribbon</module>
         <module>feign</module>
+        <module>configserver</module>
     </modules>
 
 

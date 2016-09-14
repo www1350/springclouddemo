@@ -6,3 +6,4 @@
 *.iws
 .idea/
 */target/
+/configserver/src/main/resources/application.properties
