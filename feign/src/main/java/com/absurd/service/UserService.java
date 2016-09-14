@@ -15,7 +15,10 @@ public interface UserService {
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     String getUser(@PathVariable(value = "id") Long id);
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    String login(String username, String password);
+    @RequestMapping(value = "/user/getUser", method = RequestMethod.GET)
+    String getUserByParam(@RequestParam(value = "id") Long id);
+
+    @RequestMapping(value = "/login")
+    String login(@RequestParam(value = "username") String username,@RequestParam(value = "password") String password);
 
 }

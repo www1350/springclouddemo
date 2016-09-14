@@ -28,13 +28,19 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     @ResponseBody
     public String login(){
-        return   userService.getUser(userid);
+        return   userService.login(username,password);
+    }
+
+    @RequestMapping(value = "/username", method = RequestMethod.GET)
+    @ResponseBody
+    public String getUserName(){
+        return   username;
     }
 
     @RequestMapping(value = "/dev", method = RequestMethod.GET)
     @ResponseBody
     public String getUser(){
-        return   userService.login(username,password);
+        return   userService.getUserByParam(userid);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

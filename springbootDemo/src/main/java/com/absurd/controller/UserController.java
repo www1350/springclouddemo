@@ -28,6 +28,17 @@ public class UserController {
         return userService.deleteUser(id);
     }
 
+    @RequestMapping(value = "/getUser", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<User> getUserByParam(@RequestParam("id") Long id){
+        User u = userService.getUser(id);
+        if(u==null){
+            return new ResponseEntity<User>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+        }
+        return new ResponseEntity<User>(u,HttpStatus.OK);
+    }
+
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<User> getUser(@PathVariable("id") Long id){
