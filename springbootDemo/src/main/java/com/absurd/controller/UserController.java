@@ -2,10 +2,12 @@ package com.absurd.controller;
 
 import com.absurd.model.User;
 import com.absurd.service.UserService;
+import com.github.pagehelper.Page;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,16 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /***
+     * http://localhost:8080/user/users?size=2&page=10
+     * @param page
+     * @return
+     */
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    @ResponseBody
+    public Page<User> getUsers(@PageableDefault(page = 0,value = 20) Pageable page){
+      return   userService.getList(page);
+    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseBody

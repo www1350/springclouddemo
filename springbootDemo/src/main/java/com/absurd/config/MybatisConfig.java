@@ -1,6 +1,8 @@
 package com.absurd.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.github.pagehelper.PageHelper;
+import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -24,6 +26,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.util.ClassUtils;
 
 import javax.sql.DataSource;
+import java.util.Properties;
 
 
 /**
@@ -53,6 +56,14 @@ public class MybatisConfig {
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         sqlSessionBean.setMapperLocations(resolver
                 .getResources("classpath*:com/absurd/mapper/*Mapper.xml"));
+        //分页插件
+        PageHelper pageHelper = new PageHelper();
+        Properties props = new Properties();
+        props.setProperty("dialect", "mysql");
+        pageHelper.setProperties(props);
+
+        Interceptor[] interceptors = new Interceptor[]{pageHelper};
+        sqlSessionBean.setPlugins(interceptors);
         return sqlSessionBean.getObject();
     }
 
@@ -68,6 +79,7 @@ public class MybatisConfig {
         final MapperScannerConfigurer msc = new MapperScannerConfigurer();
         msc.setBasePackage(MAPPER_SCAN_BASE_PACKAGE);
         msc.afterPropertiesSet();
+        msc.setAnnotationClass(org.springframework.stereotype.Repository.class);
         msc.setSqlSessionFactoryBeanName("sqlSessionFactory");
         msc.setSqlSessionTemplateBeanName("sqlSessionTemplate");
         return msc;
