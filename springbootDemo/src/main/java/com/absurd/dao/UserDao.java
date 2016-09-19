@@ -1,7 +1,7 @@
 package com.absurd.dao;
 
 import com.absurd.model.User;
-import org.springframework.data.domain.Pageable;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public interface UserDao{
 
     User queryUser(String username);
 
-    List<User> select(Pageable page);
+    List<User> select(PageInfo page);
 
 
 }

@@ -1,26 +1,15 @@
-package com.absurd.config;
+package com.absurd;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.context.annotation.*;
-
 
 /**
- * Created by Administrator on 2016/5/19.
+ * Created by Administrator on 2016/9/19.
  */
-@Configuration
-@EnableDiscoveryClient
-//@SpringBootApplication
-@EnableAutoConfiguration
-@ComponentScan(value = "com.absurd")
-//@PropertySources(value = { @PropertySource(value = { "classpath*:application.propertis" }, ignoreResourceNotFound = true) })
+@SpringBootApplication
 public class Application extends SpringBootServletInitializer {
-
-
-
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(Application.class);

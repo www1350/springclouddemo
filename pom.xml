@@ -16,6 +16,7 @@
         <module>zuul</module>
         <module>eurekaserver</module>
         <module>springboot-dubbo</module>
+        <module>compute</module>
     </modules>
 
 

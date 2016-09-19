@@ -4,9 +4,8 @@ import com.absurd.dao.UserDao;
 import com.absurd.mapper.UserMapper;
 import com.absurd.model.User;
 import com.github.pagehelper.Page;
-import org.apache.tomcat.util.security.MD5Encoder;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
@@ -46,7 +45,7 @@ public  boolean register(User u){
        return userMapper.selectAll();
     }
 
-    public Page<User> getList(Pageable page){return (Page<User>) userDao.select(page);}
+    public Page<User> getList(PageInfo page){return (Page<User>) userDao.select(page);}
 
     public User getUser(Long id){
        return userMapper.selectById(id);

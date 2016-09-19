@@ -3,8 +3,8 @@ package com.absurd.dao.impl;
 import com.absurd.core.dao.BaseDao;
 import com.absurd.dao.UserDao;
 import com.absurd.model.User;
+import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.session.RowBounds;
-import org.springframework.data.domain.Pageable;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
@@ -34,7 +34,7 @@ public class UserDaoImpl  extends BaseDao implements UserDao {
     }
 
     @Override
-    public List<User> select(Pageable page) {
-        return super.getSqlSessionTemplate().selectList( NAMESPACE_INFOUSER + "selectAll" , null,new RowBounds(page.getPageNumber(), page.getPageSize()));
+    public List<User> select(PageInfo page) {
+        return super.getSqlSessionTemplate().selectList( NAMESPACE_INFOUSER + "selectAll" , null,new RowBounds(page.getPageNum(), page.getPageSize()));
     }
 }

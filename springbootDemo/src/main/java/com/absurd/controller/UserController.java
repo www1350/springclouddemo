@@ -3,11 +3,9 @@ package com.absurd.controller;
 import com.absurd.model.User;
 import com.absurd.service.UserService;
 import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
  */
 @Api(value = "user",tags="user")
 @RestController
-@EnableAutoConfiguration
 @RequestMapping("/user")
 public class UserController {
     @Autowired
@@ -30,7 +27,7 @@ public class UserController {
      */
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     @ResponseBody
-    public Page<User> getUsers(@PageableDefault(page = 0,value = 20) Pageable page){
+    public Page<User> getUsers( PageInfo page){
       return   userService.getList(page);
     }
 

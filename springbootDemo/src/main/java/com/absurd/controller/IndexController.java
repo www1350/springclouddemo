@@ -21,7 +21,6 @@ import java.util.List;
  */
 @ApiIgnore
 @RestController
-@EnableAutoConfiguration
 public class IndexController {
 
     @Autowired
