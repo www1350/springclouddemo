@@ -1,4 +1,4 @@
-package com.absurd.hello;
+package com.absurd.hello.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
