@@ -1,5 +1,6 @@
 package com.absurd.hello.controller;
 
+import com.absurd.core.model.PageImplBean;
 import com.absurd.hello.dao.ProfitRepository;
 import com.absurd.hello.eneity.Profit;
 import com.absurd.hello.service.ProfitService;
