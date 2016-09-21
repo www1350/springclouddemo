@@ -23,6 +23,7 @@ import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import redis.clients.jedis.JedisPoolConfig;
+import redis.clients.jedis.ShardedJedisPool;
 
 import java.lang.reflect.Method;
 
@@ -40,6 +41,16 @@ public class RedisConfig extends CachingConfigurerSupport {
     private int port;
     @Value("${spring.redis.timeout}")
     private int timeout;
+    @Value("${spring.redis.pool.max-active}")
+    private int maxActive;
+    @Value("${spring.redis.max-wait}")
+    private int maxWait;
+    @Value("${spring.redis.max-idle}")
+    private int maxIdle;
+    @Value("${spring.redis.max-total}")
+    private int maxTotal;
+
+
 
     /**
      * 生成key的策略
@@ -101,7 +112,14 @@ public class RedisConfig extends CachingConfigurerSupport {
 
     @Bean
     public RedisConnectionFactory jedisConnectionFactory() {
+        JedisPoolConfig poolConfig = new JedisPoolConfig();
+        poolConfig.setMaxTotal(maxTotal);
+        poolConfig.setMaxIdle(maxIdle);
+        poolConfig.setMaxWaitMillis(maxWait);
+        poolConfig.setTestOnBorrow(true);
+        poolConfig.setTestOnReturn(true);
         JedisConnectionFactory factory = new JedisConnectionFactory();
+        factory.setPoolConfig(poolConfig);
         factory.setHostName(host);
         factory.setPort(port);
         factory.setTimeout(timeout); //设置连接超时时间
