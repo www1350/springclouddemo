@@ -36,8 +36,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 //@WebMvcTest(ProfitController.class)
 public class ProfitControllerTest {
 
-
-
     @Autowired
     private MockMvc mvc;
 

@@ -93,8 +93,8 @@ public class RedisConfig extends CachingConfigurerSupport {
         template.setValueSerializer(new JdkSerializationRedisSerializer());
         template.afterPropertiesSet();
         // explicitly enable transaction support
-        template.setEnableTransactionSupport(true);
-        template.multi();
+//        template.setEnableTransactionSupport(true);
+//        template.multi();
         return template;
     }
 
