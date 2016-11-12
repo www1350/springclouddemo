@@ -15,8 +15,8 @@
         <module>configserver</module>
         <module>zuul</module>
         <module>eurekaserver</module>
-        <module>springboot-dubbo</module>
         <module>compute</module>
+        <module>springboot-dubbo</module>
     </modules>
 
 
